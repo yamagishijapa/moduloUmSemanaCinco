@@ -5,15 +5,31 @@ import model.Jogador;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
+
+import static utils.ConsoleUtils.printLogoFMT;
 
 public class JogoService {
 
     List<Jogador> listaMelhoresJogadores = new ArrayList<>();
 
     public void iniciaJogo() {
-        Jogador jogador = new Jogador("Thiago", 26, 100, 5);
+        Scanner scanner = new Scanner(System.in);
+        printLogoFMT();
+
+        System.out.println("Bem vindo ao programa de exercicios do Modulo 1 - Semana 5 do curso FullStack. \n");
         System.out.println("\nJogo iniciado");
-        System.out.println("\nJogador: " + jogador);
+        System.out.println("\nInsira o seu nome jogador:");
+
+        String nome = scanner.nextLine();
+
+        while (verificarNomeExistente(nome)) {
+            System.out.println("O nome já existe. Por favor, insira outro nome:");
+            nome = scanner.nextLine();
+        }
+
+        Jogador jogador = new Jogador(nome, 26, 0, 5);
+
         adicionarMelhorJogador(jogador);
         exibeRanking(jogador);
     }
@@ -24,6 +40,7 @@ public class JogoService {
     }
 
     public void exibeRanking(Jogador jogador) {
+        System.out.println("\nRANKING \n");
         int posJogadorAtual = 0;
         if (listaMelhoresJogadores.size() >= 10) {
             for (int i = 0; i < 10; i++) {
@@ -43,4 +60,15 @@ public class JogoService {
 
         System.out.println("\nSua colocação: " + posJogadorAtual);
     }
+
+    private boolean verificarNomeExistente(String nome) {
+        for (Jogador jogador : listaMelhoresJogadores) {
+            if (jogador.getNome().equals(nome)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
