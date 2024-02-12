@@ -51,7 +51,7 @@ public class Jogador {
     }
 
     public void perdePontos(int pontos){
-        pontuacao = pontuacao + pontos;
+        pontuacao = pontuacao - pontos;
     }
 
     public void adicionaTentativa(){

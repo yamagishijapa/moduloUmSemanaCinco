@@ -15,6 +15,7 @@ public class JogoService {
 
     public void iniciaJogo() {
         Scanner scanner = new Scanner(System.in);
+        Jogo jogo =  new Jogo();
         printLogoFMT();
 
         System.out.println("Bem vindo ao programa de exercicios do Modulo 1 - Semana 5 do curso FullStack. \n");
@@ -28,7 +29,9 @@ public class JogoService {
             nome = scanner.nextLine();
         }
 
-        Jogador jogador = new Jogador(nome, 26, 0, 5);
+        Jogador jogador = new Jogador(nome, 26, 0, 0);
+
+        jogo.jogar(scanner, jogador, listaMelhoresJogadores);
 
         adicionarMelhorJogador(jogador);
         exibeRanking(jogador);
@@ -59,6 +62,8 @@ public class JogoService {
         }
 
         System.out.println("\nSua colocação: " + posJogadorAtual);
+        System.out.println("Pontuação total: " + jogador.getPontuacao());
+        System.out.println("Quantidade de tentativas: " + jogador.getNumeroTentivas());
     }
 
     private boolean verificarNomeExistente(String nome) {
