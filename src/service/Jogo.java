@@ -43,7 +43,7 @@ public class Jogo {
                     break;
                 case "sair":
                 case "0":
-                    System.out.println("Saindo do jogo.");
+                    System.out.println("Saindo do jogo.\n\n");
                     jogador.adicionaTentativa(numeroJogadas);
                     return;
                 default:
@@ -77,7 +77,7 @@ public class Jogo {
                 String input = scanner.nextLine();
 
                 if (input.equalsIgnoreCase("sair")) {
-                    System.out.println("Jogo encerrado.");
+                    System.out.println("Jogo encerrado.\n\n");
                     jogador.adicionaTentativa(numeroJogadas);
                     break;
                 }
