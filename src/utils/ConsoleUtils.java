@@ -14,6 +14,21 @@ public class ConsoleUtils {
         System.out.println("                                                                              ");
     }
 
+    public static void mostrarMenuPrincipal(){
+
+        System.out.println("\nPara selecionar o jogo de Pedra, Papel e Tesoura digite '1';");
+        System.out.println("Para selecionar o jogo de adivinhação digite '2';");
+        System.out.println("Para sair do programa, digite 'sair' ou '0'. \n");
+    }
+
+    public static void mostrarMenuPosJogo(){
+        System.out.println("Selecione uma das opções para seguir: \n");
+        System.out.println("Para visualizar o ranking completo digite '1';");
+        System.out.println("Para visualizar os top 10 jogadores digite '2';");
+        System.out.println("Para jogar novamente digite '3';");
+        System.out.println("Para encerrar o programa, digite 'sair' ou '0'. \n");
+    }
+
     public static int obterIntValido(Scanner scanner, String input) {
         int numero = 0;
         boolean primeiraEntrada = true;
