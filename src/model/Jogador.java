@@ -54,8 +54,8 @@ public class Jogador {
         pontuacao = pontuacao - pontos;
     }
 
-    public void adicionaTentativa(){
-        numeroTentivas = numeroTentivas + 1;
+    public void adicionaTentativa(int numTentivas){
+        numeroTentivas = numeroTentivas + numTentivas;
     }
 
     @Override

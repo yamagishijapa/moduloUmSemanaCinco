@@ -4,12 +4,15 @@ import model.Jogador;
 
 import java.util.*;
 
+import static utils.ConsoleUtils.obterIntValido;
+
 public class Jogo {
 
     private String melhorJogador;
     private int numeroJogadas;
 
-    public void jogar(Scanner scanner, Jogador jogador, List<Jogador> melhoresJogadores) {
+    public void jogar(Scanner scanner, Jogador jogador) {
+        numeroJogadas = 0;
         System.out.println("Pedra, Papel e Tesoura.");
 
         while (true) {
@@ -41,7 +44,7 @@ public class Jogo {
                 case "sair":
                 case "0":
                     System.out.println("Saindo do jogo.");
-                    jogador.setNumeroTentivas(numeroJogadas);
+                    jogador.adicionaTentativa(numeroJogadas);
                     return;
                 default:
                     System.out.println("Jogada inválida. Use uma das jogadas informadas anteriormente. \n");
@@ -59,9 +62,50 @@ public class Jogo {
             System.out.println("Você jogou: " + input);
             System.out.println("O computador jogou: " + jogadaComputador);
             System.out.println(resultado);
-
-            jogador.adicionaTentativa();
         }
+    }
+
+    public void jogar(Scanner scanner, Jogador jogador, int numeroMax) {
+        numeroJogadas = 0;
+        boolean validacaoNumerica = false;
+        System.out.println("Jogo de adivinhação.");
+
+        if(!validacaoNumerica){
+            while (true) {
+                System.out.println("\nAdivinhe o número de 0 a " + numeroMax + ": ");
+                System.out.println("\nDigite 'sair' para encerrar o jogo.");
+                String input = scanner.nextLine();
+
+                if (input.equalsIgnoreCase("sair")) {
+                    System.out.println("Jogo encerrado.");
+                    jogador.adicionaTentativa(numeroJogadas);
+                    break;
+                }
+
+                int numeroAleatorio = (int) (Math.random() * (numeroMax + 1));
+
+
+                validacaoNumerica = true;
+                int numeroEscolhido = obterIntValido(scanner, input);
+                validacaoNumerica = false;
+                if (numeroEscolhido < 0 || numeroEscolhido > numeroMax) {
+                    System.out.println("Número fora do intervalo permitido.");
+                    continue;
+                }
+
+                if (numeroEscolhido == numeroAleatorio) {
+                    System.out.println("Parabéns! Você acertou!");
+                    jogador.adicionaPontos(1);
+                } else {
+                    System.out.println("Número incorreto. O número correto era: " + numeroAleatorio);
+                    jogador.perdePontos(1);
+                }
+
+                numeroJogadas++;
+
+            }
+        }
+
     }
 
     private String determinarResultado(String jogadaJogador, String jogadaComputador, Jogador jogador) {
