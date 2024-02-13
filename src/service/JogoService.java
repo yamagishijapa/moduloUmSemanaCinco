@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import static utils.ConsoleUtils.obterIntValido;
 import static utils.ConsoleUtils.printLogoFMT;
 
 public class JogoService {
@@ -31,7 +32,11 @@ public class JogoService {
 
         Jogador jogador = new Jogador(nome, 26, 0, 0);
 
-        jogo.jogar(scanner, jogador, listaMelhoresJogadores);
+        jogo.jogar(scanner, jogador);
+
+        System.out.println("Insira um número que definirá o limite máximo para o jogo de adivinhação.");
+
+        jogo.jogar(scanner, jogador, obterIntValido(scanner, scanner.nextLine()));
 
         adicionarMelhorJogador(jogador);
         exibeRanking(jogador);
